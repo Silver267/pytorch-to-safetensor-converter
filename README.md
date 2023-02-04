@@ -10,7 +10,7 @@ A simple converter which converts pytorch .bin tensor files (Usually listed as "
 
 Because it decreases the loading time of large LLM models, currently supported in [oobabooga's text-generation-webui](https://github.com/oobabooga/text-generation-webui). 
 
-Note: Most of the code orgininated from [Convert to Safetensors - a Hugging Face Space by safetensors](https://huggingface.co/spaces/safetensors/convert), and this code cannot deal with files that are not named as "pytorch_model.bin" or "pytorch_model-xxxx-of-xxxx.bin".
+Note: Most of the code originated from [Convert to Safetensors - a Hugging Face Space by safetensors](https://huggingface.co/spaces/safetensors/convert), and this code cannot deal with files that are not named as "pytorch_model.bin" or "pytorch_model-xxxx-of-xxxx.bin".
 
 ### Limitations:
 
@@ -34,7 +34,7 @@ Copy **all content** of your model's folder into this repository, then run:
 python convert_to_safetensor.py
 ```
 
-After inputting your target folder and wait for some time for the conversion to be over, you should see a bunch (or one if you only have one pytorch_model.bin) of .safetensor files, these are the converted files. Additionally, you will also see a file that looks like: "model.safetensors.index.json", that is the mapping of the model, also important.
+After inputting your target folder and waiting for some time for the conversion to be over, you should see a bunch (or one if you only have one pytorch_model.bin) of .safetensor files, these are the converted files. Additionally, you will also see a file that looks like: "model.safetensors.index.json", which is the mapping of the model, also important.
 
 After the conversion is completed, copy:
 
