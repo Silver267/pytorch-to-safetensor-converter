@@ -44,6 +44,7 @@ special_tokens_map.json
 tokenizer.json
 tokenizer_config.json
 vocab.json
+merges.txt
 ```
 
 Into your target folder, then copy your target folder to the place you want it to be (models folder if you're using oobabooga's webui), and you're good to go!
