@@ -61,7 +61,7 @@ def rename(pt_filename: str) -> str:
     local = local.replace("pytorch_model", "model")
     return local
 
-def convert_multi(folder: str):
+def convert_multi(folder: str, delprv: bool):
     filename = "pytorch_model.bin.index.json"
     with open(filename, "r") as f:
         data = json.load(f)
@@ -75,6 +75,8 @@ def convert_multi(folder: str):
         sf_filename = os.path.join(folder, sf_filename)
         convert_file(pt_filename, sf_filename)
         local_filenames.append(sf_filename)
+        if(delprv):
+            os.remove(pt_filename)
 
     index = os.path.join(folder, "model.safetensors.index.json")
     with open(index, "w") as f:
@@ -83,8 +85,14 @@ def convert_multi(folder: str):
         newdata["weight_map"] = newmap
         json.dump(newdata, f, indent=4)
     local_filenames.append(index)
-
+    if(delprv):
+        os.remove("pytorch_model.bin.index.json")
     return
 
 tmpdir: str = input("Input the full path of your intended conversion folder: ")
-convert_multi(tmpdir)
+if(tmpdir==""):
+    tmpdir = "./"
+delprv: str = input("Do you want to delete processed files? (Y/N): ")
+if(delprv!='Y' and delprv!='N'):
+    delprv = input("Do you want to delete processed files? (Y/N): ")
+convert_multi(tmpdir, delprv=='Y')
