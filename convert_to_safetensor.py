@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 from collections import defaultdict
 from tqdm import tqdm
 
@@ -89,10 +90,25 @@ def convert_multi(folder: str, delprv: bool):
         os.remove("pytorch_model.bin.index.json")
     return
 
+
+def convert_single(folder: str, delprv: bool):
+    pt_filename = "pytorch_model.bin"
+    sf_name = "model.safetensors"
+    sf_filename = os.path.join(folder, sf_name)
+    convert_file(pt_filename, sf_filename)
+    if(delprv):
+        os.remove("pytorch_model.bin")
+    return
+
 tmpdir: str = input("Input the full path of your intended conversion folder: ")
 if(tmpdir==""):
     tmpdir = "./"
 delprv: str = input("Do you want to delete processed files? (Y/N): ")
 if(delprv!='Y' and delprv!='N'):
     delprv = input("Do you want to delete processed files? (Y/N): ")
+
+for filename in os.listdir(tmpdir):
+    if(filename=="pytorch_model.bin"):
+        convert_single(tmpdir, delprv=='Y')
+        sys.exit(0)
 convert_multi(tmpdir, delprv=='Y')
