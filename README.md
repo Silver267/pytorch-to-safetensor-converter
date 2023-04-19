@@ -49,4 +49,15 @@ merges.txt
 
 Into your target folder, then copy your target folder to the place you want it to be (models folder if you're using oobabooga's webui), and you're good to go!
 
-
+if your original model is fp32 then don't forget to edit the
+```
+"torch_dtype": "float32",
+```
+to
+```
+"torch_dtype": "float16",
+```
+in
+```
+config.json
+```
