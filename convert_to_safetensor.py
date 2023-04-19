@@ -43,7 +43,7 @@ def convert_file(
             loaded.pop(name)
 
     # For tensors to be contiguous
-    loaded = {k: v.contiguous() for k, v in loaded.items()}
+    loaded = {k: v.contiguous().half() for k, v in loaded.items()}
 
     dirname = os.path.dirname(sf_filename)
     os.makedirs(dirname, exist_ok=True)
