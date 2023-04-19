@@ -103,9 +103,9 @@ def convert_single(folder: str, delprv: bool):
 tmpdir: str = input("Input the full path of your intended conversion folder: ")
 if(tmpdir==""):
     tmpdir = "./"
-delprv: str = input("Do you want to delete processed files? (Y/N): ")
+delprv: str = input("Do you want to delete used pytorch files? (Y/N): ")
 if(delprv!='Y' and delprv!='N'):
-    delprv = input("Do you want to delete processed files? (Y/N): ")
+    delprv = input("Do you want to delete used pytorch files? (Y/N): ")
 
 for filename in os.listdir(tmpdir):
     if(filename=="pytorch_model.bin"):
