@@ -60,7 +60,7 @@ def find_index_file(source_folder):
 def convert_files(source_folder, dest_folder, delete_old):
     index_file = find_index_file(source_folder)
     if not index_file:
-        sys.exit("Error: Index file not found. Please ensure the correct folder is specified.")
+        raise RuntimeError("Index file not found. Please ensure the correct folder is specified.")
 
     index_file = os.path.join(source_folder, index_file)
     with open(index_file) as f:
