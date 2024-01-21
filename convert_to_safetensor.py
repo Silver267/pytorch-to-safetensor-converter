@@ -1,10 +1,10 @@
 import json
 import os
 import shutil
-import sys
 import torch
 from collections import defaultdict
 from safetensors.torch import load_file, save_file
+from tqdm import tqdm
 
 def shared_pointers(tensors):
     ptrs = defaultdict(list)
@@ -66,13 +66,14 @@ def convert_files(source_folder, dest_folder, delete_old):
     with open(index_file) as f:
         index_data = json.load(f)
 
-    copy_additional_files(source_folder, dest_folder)
-    for pt_filename in set(index_data["weight_map"].values()):
+    for pt_filename in tqdm(set(index_data["weight_map"].values())):
         full_pt_filename = os.path.join(source_folder, pt_filename)
         sf_filename = os.path.join(dest_folder, rename(pt_filename))
         convert_file(full_pt_filename, sf_filename, copy_add_data=False)
         if delete_old:
             os.remove(full_pt_filename)
+
+    copy_additional_files(source_folder, dest_folder)
     
     index_path = os.path.join(dest_folder, "model.safetensors.index.json")
     with open(index_path, "w") as f:
