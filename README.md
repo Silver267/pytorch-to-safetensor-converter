@@ -20,7 +20,7 @@ This program **will not** re-shard (aka break down) the model, you'll need to do
 
 ### Usage:
 
-After installing python, ``cd`` into the repository and install dependencies first:
+After installing python (Python 3.10.x is suggested), ``cd`` into the repository and install dependencies first:
 
 ```
 git clone https://github.com/Silver267/pytorch-to-safetensor-converter.git
